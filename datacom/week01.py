@@ -65,31 +65,44 @@ def main():
 
     try:
         # Initialiseer een LED op pin 28:
-        led = ...
+        led = LED(28)
 
         # Laat de LED branden, wacht 1 sec., en doof ze weer:
-        ...
+        led.on()
+        time.sleep(1)
+        led.off()
 
         # Initialiseer een knop op pin 29:
-        btn = ...
+        btn =Button(29)
 
         # Print de status van de knop:
-        print(...)
+        print("de status van de knop is {}".format(btn.pressed))
 
         # Wacht tot op de knop gedrukt wordt, laat dan de LED 5x knipperen met een interval van 250ms:
-        ...
-        for i in ...:
-            ...
+        btn.wait_for_press()
+        for i in range(5):
+            led.on()
+            time.sleep(1/4)#ook 0.25 kan
+            led.off()
+            time.sleep(1/4)
 
         # Initialiseer een list van LEDs op volgende pins:
         led_pins = (28, 29, 34, 25)
-        led_objects = ...
+        # led_objects = ...
+        # for pin in led_pins:
+        #     led_objects(pin)=led_pins
+
+        led_objects=[led_pins for pin in led_pins]
 
         # Laat de leds 1 voor 1 branden voor een halve seconde:
+        for led in led_objects:
+            led.on()
+            time.sleep(0.5)
+            led.off()
     except KeyboardInterrupt:
         pass
     finally:
-        GPIO.cls
+        GPIO.cleanup()
 
 
 # Deze vreemde constructie zorgt ervoor dat de functie main enkel wordt opgeroepen
