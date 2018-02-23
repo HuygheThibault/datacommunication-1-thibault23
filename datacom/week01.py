@@ -15,14 +15,20 @@ class LED:
         GPIO.setup(self.pin, GPIO.OUT)
 
     # b) De methode 'on' laat de LED branden
-    ...
+    def on(self):
+        GPIO.output(self, GPIO.HIGH)
 
-    # c) De methode 'off' dooft de LED
-    ...
-
+        # c) De methode 'off' dooft de LED
+    def off(self):
+        GPIO.output(self, GPIO.LOW)
     # d) De methode 'toggle' leest eerst de huidige status van de pin.
     # Vervolgens wordt de tegenovergestelde waarde naar de pin geschreven.
-    ...
+    def toggle(self):
+        value = GPIO.input(self)
+        if value == "HIGH":
+            GPIO.output(self, GPIO.LOW)
+        else:
+            GPIO.output(self, GPIO.HIGH)
 
 
 # 2) Maak een klasse Button
